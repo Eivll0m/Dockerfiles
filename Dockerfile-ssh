@@ -11,3 +11,8 @@ RUN ssh-keygen -t rsa -f /etc/ssh/ssh_host_rsa_key
 
 CMD ["/usr/sbin/sshd","-D"]
 EXPOSE 22
+
+#build
+#docker build -t ssh:v1 -f ./Dockerfile-ssh ./
+#run
+#docker run -d --name sshserver -p 2222:22 ssh:v1
