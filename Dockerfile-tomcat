@@ -1,0 +1,19 @@
+FROM centos:6.9
+MAINTAINER eivll0m@163.com
+
+ADD jdk-8u73-linux-x64.tar.gz /app
+
+ENV JAVA_HOME /app/jdk1.8.0_73
+
+ADD apache-tomcat-7.0.56.tar.gz /app
+
+WORKDIR /app/apache-tomcat-7.0.56
+
+ENTRYPOINT ["bin/catalina.sh","run"]
+
+EXPOSE 8080
+
+#build
+#docker build -t tomcat:v1 -f ./Dockerfile-tomcat ./
+#run
+#docker run -d --name tomcat-8080 -p 8080:8080 tomcat:v1
