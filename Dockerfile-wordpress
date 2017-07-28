@@ -1,0 +1,21 @@
+FROM centos:6.9
+MAINTAINER eivll0m@163.com
+
+RUN yum -y install httpd php php-gd php-mysql mysql mysql-server
+ENV MYSQL_ROOT_PASSWD 123456
+
+RUN echo "<?php phpinfo()?>" > /var/www/html/index.php
+ADD start.sh /start.sh
+RUN chmod +x /start.sh
+
+#ADD wordpress-4.7.4-zh_CN.tar.gz /var/www/html
+
+VOLUME ["/var/lib/mysql"]
+
+CMD /start.sh
+
+EXPOSE 80 3306
+
+#create database
+#docker exec wp sh -c 'exec mysql -uroot -p"$MYSQL_ROOT_PASSWORD" -e "create database wp"'
+#docker run -d --name wp -p 88:80 -v /data/wp:/var/www/html wordpress:v1
